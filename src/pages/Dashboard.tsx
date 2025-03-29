@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { useAuth } from "@/hooks/useAuth";
 import { DashboardCard } from "@/components/dashboard/DashboardCard";
@@ -24,11 +23,9 @@ const Dashboard = () => {
   const formattedOrders = getFormattedOrders();
 
   useEffect(() => {
-    // Simulate API call
     const fetchData = async () => {
       setIsLoading(true);
       try {
-        // Wait for a bit to simulate network delay
         await new Promise(resolve => setTimeout(resolve, 1500));
         if (user) {
           const data = getDashboardStats(user.role);
@@ -44,7 +41,6 @@ const Dashboard = () => {
     fetchData();
   }, [user]);
 
-  // Helper to determine which cards to show based on user role
   const getCardsByRole = () => {
     const commonCards = [
       {
@@ -165,7 +161,7 @@ const Dashboard = () => {
             description={card.description}
             icon={card.icon}
             trend={!isLoading ? card.trend : undefined}
-            trendValue={card.trendValue}
+            trendValue={card.trendValue || undefined}
             isLoading={isLoading}
           />
         ))}
@@ -180,7 +176,6 @@ const Dashboard = () => {
         </div>
       </div>
 
-      {/* Placeholder for additional dashboard sections */}
       <div className="mt-8">
         <h3 className="text-lg font-medium mb-4">
           {user ? `${user.role.charAt(0).toUpperCase() + user.role.slice(1)} Overview` : "Overview"}

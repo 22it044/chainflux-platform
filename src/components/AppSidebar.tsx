@@ -1,4 +1,3 @@
-
 import { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
@@ -35,7 +34,7 @@ import { ThemeToggle } from './ThemeToggle';
 export function AppSidebar() {
   const location = useLocation();
   const { user, signOut } = useAuth();
-  const [open, setOpen] = useState(true);
+  const [openMobile, setOpenMobile] = useState(false);
 
   const isActive = (path: string) => {
     return location.pathname === path;
@@ -84,7 +83,7 @@ export function AppSidebar() {
   const navItems = getNavItems();
 
   return (
-    <Sidebar open={open} onOpenChange={setOpen}>
+    <Sidebar>
       <SidebarHeader className="flex flex-row items-center justify-between p-4">
         <div className="flex items-center">
           <Box className="h-6 w-6 text-sidebar-primary" />
